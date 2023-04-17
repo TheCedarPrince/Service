@@ -1,4 +1,3 @@
-
 vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
 vim.opt.showtabline = 2                         -- always show tabs
 vim.opt.splitbelow = true                       -- force all horizontal splits to go below current window
@@ -14,10 +13,5 @@ vim.opt.number = true                           -- set numbered lines
 vim.opt.sessionoptions = "tabpages,globals"     -- Remember tab names upon session save
 vim.opt.autoread = true				-- Check for updates to files on system
 vim.cmd.syntax "off"				-- Turns of syntax highlighting
-vim.opt.laststatus = 0
-
--- Automatically update buffers if a change to the file system was detected
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" },
-})
+vim.opt.laststatus = 3 				-- Enable Global Status Line
+vim.opt.cmdheight = 0
