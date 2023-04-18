@@ -1,6 +1,5 @@
-
 return {
-	'junegunn/goyo.vim',
+	"junegunn/goyo.vim",
 	lazy = false,
 	config = function()
 		vim.g.goyo_width = '85%' -- Default width
