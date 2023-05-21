@@ -2,6 +2,8 @@
   "LuaSnip": { "branch": "master", "commit": "8d6c0a93dec34900577ba725e91c44b8d3ca1f45" },
   "ScratchPad": { "branch": "main", "commit": "f93cc6bea57864f164932fdb86534efc4f3debf0" },
   "VOoM": { "branch": "master", "commit": "423600d0ab98254bae6fa2ca60d06057ecfb748a" },
+  "bullets.vim": { "branch": "master", "commit": "746f92ae05cdcc988857d8e76418326f07af9494" },
+  "ctrlsf.vim": { "branch": "master", "commit": "32236a8b376d9311dec9b5fe795ca99d32060b13" },
   "fzf-lua": { "branch": "main", "commit": "08f57e9a3c58c4ebef4c96de271d674d12e77607" },
   "goyo.vim": { "branch": "master", "commit": "fa0263d456dd43f5926484d1c4c7022dfcb21ba9" },
   "incline.nvim": { "branch": "main", "commit": "71a03756a5f750c79a2889a80fcd8bbff7083690" },
