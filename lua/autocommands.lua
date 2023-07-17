@@ -31,6 +31,10 @@ function! s:goyo_leave()
   " Makes the signcolumn match the background colorscheme
   highlight clear SignColumn
 
+  hi GitSignsAdd guibg=NONE ctermfg=white
+  hi GitSignsChange guibg=NONE ctermfg=white
+  hi GitSignsDelete guibg=NONE ctermfg=white
+
   " Brings mode back
   set showmode 
 
