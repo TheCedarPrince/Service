@@ -9,7 +9,7 @@ vim.opt.updatetime = 300                        -- faster completion (4000ms def
 vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.number = true                           -- set numbered lines
--- vim.opt.signcolumn = "yes:2"                      -- always show the sign column, and fix it to a width of two
+vim.opt.signcolumn = "number"                   -- always show the sign column
 vim.opt.sessionoptions = "tabpages,globals"     -- Remember tab names upon session save
 vim.opt.autoread = true				-- Check for updates to files on system
 vim.cmd.syntax "off"				-- Turns of syntax highlighting
