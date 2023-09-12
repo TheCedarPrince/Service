@@ -21,3 +21,6 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
+
+-- Some editor aesthetic improvements
+vim.api.nvim_set_hl(0, "TabLineFill", { bg = none })
