@@ -21,3 +21,26 @@ end, {
     nargs = "*",
 })
 
+local function new_meeting(args)
+
+    local luasnip = require("luasnip")
+    -- Get the current UTC time
+    local timestamp = os.date("!%m%d%Y%H%M%S")
+
+    vim.cmd.edit(timestamp .. "-" .. table.concat(args.fargs, "-") .. ".md")
+
+    -- Get "zettel" snippet and expand it in current buffer
+    for _, snippet in pairs(luasnip.get_snippets("pandoc")) do
+        if snippet.name == "meeting" then
+            luasnip.snip_expand(snippet, {})
+            return
+        end
+    end
+end
+
+vim.api.nvim_create_user_command("NewMeet", function(...)
+    new_meeting(...)
+end, {
+    nargs = "*",
+})
+
