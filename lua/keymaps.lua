@@ -5,4 +5,3 @@ vim.cmd [[
 
 -- Toggle gitsigns signs
 vim.api.nvim_set_keymap('n', '<Leader>g', ':lua require("gitsigns").toggle_signs()<CR>', { noremap = true, silent = true })
-
