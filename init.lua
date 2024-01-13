@@ -11,9 +11,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.python3_host_prog = '/home/thecedarprince/Programs/Miniconda3/envs/neovim/bin/python'
 require("options")
 require("lazy").setup("plugins")
 require("autocommands")
 require("keymaps")
 require("functions")
 require("plugin_options")
+
+
