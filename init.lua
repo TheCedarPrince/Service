@@ -17,6 +17,4 @@ require("lazy").setup("plugins")
 require("autocommands")
 require("keymaps")
 require("functions")
-require("plugin_options")
-
-
+require("colors")
