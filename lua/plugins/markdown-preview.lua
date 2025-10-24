@@ -1,5 +1,6 @@
 return {
 	"iamcco/markdown-preview.nvim",
+  commit = "a923f5f",
 	lazy = false,
 	config = function()
 vim.g.mkdp_auto_close = 0 -- Auto close current preview window when change from markdown buffer to another buffer

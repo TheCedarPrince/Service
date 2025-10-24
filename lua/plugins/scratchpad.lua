@@ -1,6 +1,7 @@
 return {
 	"FraserLee/ScratchPad",
 	lazy = false,
+  commit = "c24bfa8",
 	config = function()
 vim.g.scratchpad_autostart = 0 -- Disable autostart
 vim.g.scratchpad_autosize = 0 -- Disable autosize

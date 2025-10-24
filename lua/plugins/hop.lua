@@ -1,6 +1,7 @@
 return {
-    "phaazon/hop.nvim",
+    "smoka7/hop.nvim",
     lazy = false,
+    version = "*",
     config = function()
       require'hop'.setup{
 	quit_key = '<ESC>',

@@ -1,6 +1,7 @@
 return {
 	"airblade/vim-rooter",
 	lazy = false,
+  commit = "51402fb",
 	config = function()
     vim.g.rooter_cd_cmd = 'lcd'
     vim.g.rooter_resolve_links = 1

@@ -1,6 +1,7 @@
 return {
 	"mbbill/undotree",
 	lazy = false,
+  commit = "0f1c981",
 	config = function()
         vim.cmd([[
         if has("persistent_undo")

@@ -1,6 +1,7 @@
 return {
   "dyng/ctrlsf.vim",
   lazy = false,
+  commit = "50186c5",
   config = function()
     vim.g.ctrlsf_ackprg = 'rg'  -- Use ripgrep as the search program (requires ripgrep to be installed)
     vim.g.ctrlsf_auto_close = 0  -- Automatically close the ctrlsf window when the search is complete

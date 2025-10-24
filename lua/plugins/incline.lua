@@ -1,6 +1,7 @@
 return {
 	"b0o/incline.nvim",
 	lazy = false,
+  commit = "0fd2d5a",
 	config = function()
 	require("incline").setup({
 	debounce_threshold = {
