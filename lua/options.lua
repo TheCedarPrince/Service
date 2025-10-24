@@ -16,6 +16,9 @@ vim.cmd.syntax "off"				-- Turns of syntax highlighting
 vim.opt.laststatus = 3 				-- Enable Global Status Line
 vim.opt.cmdheight = 0
 
+vim.opt.hidden = true
+vim.nocompatible = true
+
 -- Set tabbing to only two spaces
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
