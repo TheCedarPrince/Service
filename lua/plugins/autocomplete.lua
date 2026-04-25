@@ -19,7 +19,8 @@
 --   <C-Space>      — force open completion menu
 --   <C-e>          — abort and close menu
 --   <CR>           — confirm selection (select=false: only explicit picks)
---   <Tab>/<S-Tab>  — expand snippet or jump between placeholders
+--   <Tab>/<S-Tab>  — SuperTab: cycles cmp menu when open, otherwise context-
+--                    aware (snippet jump → SuperTab fallback → literal Tab)
 
 return {
 
@@ -40,8 +41,19 @@ return {
       })
       -- Suffice configuration snippets
       require("luasnip.loaders.from_snipmate").lazy_load({
-        paths = { "~/.config/nvim/lua/core/snippets" },
+        paths = { "~/.config/nvim/lua/core/lua/core/snippets" },
       })
+    end,
+  },
+
+  -- ── SuperTab ──────────────────────────────────────────────────────────
+  {
+    "ervandew/supertab",
+    init = function()
+      -- Completion direction: <Tab> goes top-to-bottom (feels natural with cmp)
+      vim.g.SuperTabDefaultCompletionType = "<c-n>"
+      -- Close the preview window when completing
+      vim.g.SuperTabClosePreviewOnPopupClose = 1
     end,
   },
 
@@ -49,15 +61,23 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "L3MON4D3/LuaSnip",         -- snippet engine (defined above)
-      "hrsh7th/cmp-nvim-lsp",     -- LSP completion source
-      "saadparwaiz1/cmp_luasnip", -- bridge: LuaSnip → nvim-cmp
-      "hrsh7th/cmp-buffer",       -- buffer word source
-      "hrsh7th/cmp-path",         -- filesystem path source
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "ervandew/supertab",        -- SuperTab for Tab cycling
     },
     config = function()
       local cmp     = require("cmp")
       local luasnip = require("luasnip")
+
+      -- Helper: check if there are characters before the cursor (for Tab context)
+      local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0
+          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
 
       cmp.setup({
         snippet = {
@@ -71,18 +91,35 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"]     = cmp.mapping.abort(),
           ["<CR>"]      = cmp.mapping.confirm({ select = false }),
+
+          -- Tab: cycle cmp menu → jump snippet placeholder → SuperTab fallback
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
             else
-              fallback()
+              -- Hand off to SuperTab for its context-aware completion
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes("<Plug>SuperTabForward", true, true, true),
+                "n", false
+              )
             end
           end, { "i", "s" }),
+
+          -- S-Tab: cycle cmp menu backwards → jump snippet placeholder backwards
           ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
-              fallback()
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes("<Plug>SuperTabBackward", true, true, true),
+                "n", false
+              )
             end
           end, { "i", "s" }),
         }),
@@ -95,4 +132,21 @@ return {
       })
     end,
   },
+
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<Tab>",     desc = "cmp next / snippet jump / SuperTab", mode = { "i", "s" } },
+        { "<S-Tab>",   desc = "cmp prev / snippet jump back",       mode = { "i", "s" } },
+        { "<C-Space>", desc = "Open completion menu",               mode = "i" },
+        { "<C-e>",     desc = "Abort completion",                   mode = "i" },
+        { "<C-n>",     desc = "Next completion item",               mode = "i" },
+        { "<C-p>",     desc = "Prev completion item",               mode = "i" },
+        { "<CR>",      desc = "Confirm completion (explicit)",       mode = "i" },
+      },
+    },
+  },
+
 }
