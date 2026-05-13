@@ -1,7 +1,7 @@
 return {
   "preservim/vim-pencil",
   lazy = false,
-  version = "*",
+  commit = "6d70438a8886eaf933c38a7a43a61adb0a7815ed",
   init = function()
     vim.g["pencil#wrapModeDefault"] = "soft"
     vim.g["pencil#conceallevel"] = 2   -- tell pencil to use your desired conceallevel

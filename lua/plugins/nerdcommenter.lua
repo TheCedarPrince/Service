@@ -1,6 +1,6 @@
 return {
 	"preservim/nerdcommenter",
-  commit = "02a3b64",
+  commit = "a462bbda1e26f44fb3d3eb9d9d1c6a07aa98e665",
 	lazy = false,
   keys = {
       { "<Space><Space>", "<Plug>NERDCommenterSexy", mode = { "n", "v" }, { noremap = false } },

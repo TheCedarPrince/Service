@@ -1,7 +1,7 @@
 return {
   "b0o/incline.nvim",
   lazy = false,
-  commit = "0fd2d5a",
+  commit = "debd628e9395f7a9da57bdc31ce75ca6b40a880b",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "slugbyte/lackluster.nvim",

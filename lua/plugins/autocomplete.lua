@@ -27,8 +27,8 @@ return {
   -- ── Snippet engine ────────────────────────────────────────────────────
   {
     "L3MON4D3/LuaSnip",
+    commit = "a62e1083a3cfe8b6b206e7d3d33a51091df25357",
     build   = "make install_jsregexp",
-    version = "*",
     config  = function()
       local ls = require("luasnip")
 
@@ -49,6 +49,7 @@ return {
   -- ── SuperTab ──────────────────────────────────────────────────────────
   {
     "ervandew/supertab",
+    commit = "8705ae0e43b34339c06328fa6dab24ecaf21aab6",
     init = function()
       -- Completion direction: <Tab> goes top-to-bottom (feels natural with cmp)
       vim.g.SuperTabDefaultCompletionType = "<c-n>"
@@ -60,6 +61,7 @@ return {
   -- ── Completion engine ─────────────────────────────────────────────────
   {
     "hrsh7th/nvim-cmp",
+    commit = "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
     dependencies = {
       "L3MON4D3/LuaSnip",
       "hrsh7th/cmp-nvim-lsp",

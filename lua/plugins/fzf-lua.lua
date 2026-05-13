@@ -2,6 +2,7 @@
 
 return {
   "ibhagwan/fzf-lua",
+  commit = "97376e364f51f1b5ae3efaa3eb2e929430ca8419",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "folke/which-key.nvim",
